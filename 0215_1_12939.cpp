@@ -15,8 +15,7 @@ string solution(string s) {
 		numset.insert(num);
 	}
 
-    stringstream answer;
-    answer << *numset.begin() << ' ' << *numset.rbegin();
+    ss << *numset.begin() << ' ' << *numset.rbegin();
 
-    return answer.str();
+    return ss.str();
 }
