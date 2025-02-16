@@ -7,17 +7,15 @@
 using namespace std;
 
 string solution(string s) {
-	set<int> numset;
-
 	stringstream ss(s);
-	
+	set<int> numset;
 	int num;
+
 	while (ss >> num) {
 		numset.insert(num);
 	}
 
     stringstream answer;
-    
     answer << *numset.begin() << ' ' << *numset.rbegin();
 
     return answer.str();
