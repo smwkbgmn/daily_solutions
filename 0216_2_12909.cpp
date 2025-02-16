@@ -10,11 +10,8 @@ bool solution(string s)
     for (auto it = s.begin(); it != s.end(); ++it) {
         if (*it == '(') {
             ++count;
-        } else {
-            --count;
-            if (count < 0) {
-                return false;
-            }
+        } else if (--count < 0) {
+			return false;
         }
     }
 
