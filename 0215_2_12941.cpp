@@ -1,4 +1,4 @@
-/* 최솟값 만들기 */
+/* 최솟값 만들기_12941 */
 
 #include <vector>
 #include <algorithm>

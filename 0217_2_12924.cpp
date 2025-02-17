@@ -1,3 +1,5 @@
+/* 숫자의 표현_12924 */
+
 using namespace std;
 
 int solution(int n) {
