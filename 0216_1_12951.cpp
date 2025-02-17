@@ -9,7 +9,9 @@ using namespace std;
 string solution(string s) {
 	string answer;
 
-	answer += toupper(s.front());
+	if (!s.empty()) {
+		answer += toupper(s.front());
+	}
 
     for (auto it = s.begin() + 1; it != s.end(); ++it) {
 		if (answer.back() == ' ') {
@@ -26,13 +28,15 @@ string solution(string s) {
 // #include <sstream>
 // #include <cctype>
 
+// using namespace std;
+
 // string solution(string s) {
 //     stringstream ss(s);
 //     stringstream answer;
 
 //     while (ss) {
 //         while (ss.peek() == ' ') {
-//             answer << ss.get();
+//             answer << static_cast<char>(ss.get());
 //         }
 
 //         string word;
