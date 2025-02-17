@@ -9,8 +9,8 @@ using namespace std;
 string solution(string s) {
 	stringstream ss(s);
 	set<int> numset;
+	
 	int num;
-
 	while (ss >> num) {
 		numset.insert(num);
 	}
