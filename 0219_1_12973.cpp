@@ -1,6 +1,7 @@
 /* 짝지어 제거하기_12973 */
 
 #include <string>
+#include <stack>
 
 using namespace std;
 
