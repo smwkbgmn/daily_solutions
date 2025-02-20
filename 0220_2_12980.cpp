@@ -4,10 +4,9 @@
 
 using namespace std;
 
-int solution(int n)
-{
+int solution(int n) {
     int battery = 0;
-    
+
     bitset<32> n_bit(n);
     while (n_bit.any()) {
         if (n_bit.test(0)) {
@@ -16,6 +15,6 @@ int solution(int n)
         }
         n_bit >>= 1;
     }
-    
+
     return battery;
 }
