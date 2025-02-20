@@ -7,7 +7,7 @@ using namespace std;
 
 int solution(string s) {
     if (s.length() % 2 == 1) {
-        return static_cast<int>(false);
+		return static_cast<int>(false);
     }
     
     stack<char> stack_c;

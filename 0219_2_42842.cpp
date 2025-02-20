@@ -9,7 +9,7 @@ vector<int> solution(int brown, int yellow) {
     
     int x = (brown / 4) + 1 + (brown % 4 > 0);
     int y = x - (brown % 4 > 0);
-    
+
     while ((x - 2) * (y - 2) != yellow) {
         ++x;
         --y;
@@ -19,4 +19,15 @@ vector<int> solution(int brown, int yellow) {
     answer.push_back(y);
     
     return answer;
+}
+
+#include <iostream>
+
+int main() {
+	// vector<int> ans = solution(5000, 2497); // Case of logest rectangle
+	vector<int> ans = solution(4996, 1557504); // Case of square
+
+	cout << ans[0] << ", " << ans[1] << '\n';
+
+	return 0;
 }
