@@ -52,29 +52,15 @@ int solution(vector<int> arr) {
 }
 
 /* 최대공약수를 이용한 다른사람의 풀이 */
-int gcd(int x, int y) {
-	// cout << "gcm: " << x << ", " << y << '\n';
-	return x % y == 0 ? y : gcd(y, x % y);
-}
 
-int lcm(int x, int y) { 
-	// cout << "lcm: " << x << ", " << y << '\n';
-	return x * y / gcd(x, y);
-}
+int gcd(int x, int y) { return x % y == 0 ? y : gcd(y, x % y); }
+int lcm(int x, int y) { return x * y / gcd(x, y); }
 
 int solution_else(vector<int> arr) {
     int answer = arr[0];
     for (auto it = arr.begin() + 1; it != arr.end(); ++it) {
-		// cout << "n: " << *it << '\n';
         answer = lcm(answer, *it);
 	}
+
     return answer;
 }
-
-// int main() {
-// 	vector<int> input = {2, 6, 8, 14};
-// 	cout << solution(input) << "\n\n";
-// 	cout << solution_else(input) << "\n";
-
-// 	return 0;
-// }
