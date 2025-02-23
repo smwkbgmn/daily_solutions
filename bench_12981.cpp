@@ -35,8 +35,8 @@ vector<int> solution2(int n, vector<string> words) {
     
     size_t i = 0;
     while (++i < words.size()
-        && words[i].front() == words[i - 1].back()
-        && !used[words[i]]) {
+    && words[i].front() == words[i - 1].back()
+    && !used[words[i]]) {
         used[words[i]] = true;
     }
     
@@ -55,8 +55,8 @@ vector<int> solution3(int n, vector<string> words) {
     
     size_t i = 0;
     while (++i < words.size()
-        && words[i].front() == used.back().back()
-        && find(used.begin(), used.end(), words[i]) == used.end()) {
+    && words[i].front() == used.back().back()
+    && find(used.begin(), used.end(), words[i]) == used.end()) {
         used.push_back(words[i]);
     }
     

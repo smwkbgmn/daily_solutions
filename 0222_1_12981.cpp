@@ -13,8 +13,8 @@ vector<int> solution(int n, vector<string> words) {
     
     size_t i = 0;
     while (++i < words.size()
-		&& words[i].front() == words[i - 1].back()
-		&& used.insert(words[i]).second);
+	&& words[i].front() == words[i - 1].back()
+	&& used.insert(words[i]).second);
 
 	/* The used.insert() returns a pair<iterator, bool>, 
 	which contains iterator pointing to the inserted element as first,
