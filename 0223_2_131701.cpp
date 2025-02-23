@@ -13,12 +13,18 @@ int solution(vector<int> elements) {
 	/* Using previous sum results can significantly reduce runtime */
     vector<int> sum_prev(size, 0);
     
-    for (int i = 0; i < size - 1; ++i) {
-        for (int cnt = 0; cnt < size; ++cnt) {
-            sum_prev[cnt] += elements[(i + cnt) % size];
-            sums.insert(sum_prev[cnt]);
-        }
+	for (auto it = elements.begin(); it + 1 != elements.end(); ++it) {
+		auto it_add = it;
+		
+		for (int i = 0; i < size; ++i) {
+			sum_prev[i] += *it_add;
+			sums.insert(sum_prev[i]);
+
+			if (++it_add == elements.end()) {
+				it_add = elements.begin();
+			}
+		}
     } 
-    
+
     return sums.size() + 1;
 }
