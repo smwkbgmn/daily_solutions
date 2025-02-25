@@ -6,65 +6,47 @@
 
 using namespace std;
 
-class Hasher {
-    public: 
-        int get(string& key) {
-            if (table.find(key) == table.end()) {
-                table.insert(pair<string, int>(key, size));
-                return size++;
-            } else {
-                return table[key];
-            }
-        }
-    private:
-        map<string, int> table;
-        int size = 0;
-};
-
 int solution(vector<string> want, vector<int> number, vector<string> discount) {
-    Hasher hs;
+    map<string, int> hs;
     
     int size = want.size();
-    
     for (int i = 0; i < size; ++i) {
-        hs.get(want[i]);
+        hs.insert(pair<string, int>(want[i], i));
     }
     
     vector<int> v_disc(size, 0);
     
     int total = 0;
     for (int i = 0; i < 10; ++i) {
-        int i_hs = hs.get(discount[i]);
-        if (i_hs < size) {
-            ++v_disc[i_hs];
+        auto it_hs = hs.find(discount[i]);
+        if (it_hs != hs.end()) {
+            ++v_disc[it_hs->second];
             ++total;
         }
     }
     
-    bool stsfy = true;
-    if (total > 9) {
+    bool stsfy = (total > 9);
+    if (stsfy) {
         for (auto i = 0; i < size; ++i) {
             if (v_disc[i] < number[i]) {
                 stsfy = false;
                 break;
             }
         }
-    } else {
-        stsfy = false;
     }
     
     int day = static_cast<int>(stsfy);
     
     for (auto it = discount.begin(); it + 10 != discount.end(); ++it) {
-        int i_hs = hs.get(*it);
-        if (i_hs < size) {
-            --v_disc[i_hs];
+        auto it_hs = hs.find(*it);
+        if (it_hs != hs.end()) {
+            --v_disc[it_hs->second];
             --total;
         }
         
-        i_hs = hs.get(*(it + 10));
-        if (i_hs < size) {
-            ++v_disc[i_hs];
+        it_hs = hs.find(*(it + 10));
+        if (it_hs != hs.end()) {
+            ++v_disc[it_hs->second];
             ++total;
         }
         

@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/* Increment */
 vector<int> solution(int n, long long left, long long right) {
     vector<int> answer;
     
@@ -22,11 +23,6 @@ vector<int> solution(int n, long long left, long long right) {
 }
 
 /* DIV and MOD */
-
-#include <vector>
-
-using namespace std;
-
 vector<int> solution(int n, long long left, long long right) {
     vector<int> answer;
     
