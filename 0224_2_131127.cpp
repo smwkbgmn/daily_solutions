@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <bitset>
 
 using namespace std;
 
@@ -15,51 +16,30 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
     }
     
     vector<int> v_disc(size, 0);
+    bitset<10> stsfy;
     
-    int total = 0;
     for (int i = 0; i < 10; ++i) {
         auto it_hs = hs.find(discount[i]);
-        if (it_hs != hs.end()) {
-            ++v_disc[it_hs->second];
-            ++total;
+        if (it_hs != hs.end() && ++v_disc[it_hs->second] == number[it_hs->second]) {
+            stsfy[it_hs->second] = true;
         }
     }
     
-    bool stsfy = (total > 9);
-    if (stsfy) {
-        for (auto i = 0; i < size; ++i) {
-            if (v_disc[i] < number[i]) {
-                stsfy = false;
-                break;
-            }
-        }
-    }
+    int day = static_cast<int>(stsfy.count() == size);
     
-    int day = static_cast<int>(stsfy);
-    
+    map<string, int>::iterator it_hs;
     for (auto it = discount.begin(); it + 10 != discount.end(); ++it) {
-        auto it_hs = hs.find(*it);
-        if (it_hs != hs.end()) {
-            --v_disc[it_hs->second];
-            --total;
+        it_hs = hs.find(*it);
+        if (it_hs != hs.end() && --v_disc[it_hs->second] < number[it_hs->second]) {
+            stsfy[it_hs->second] = false;
         }
         
         it_hs = hs.find(*(it + 10));
-        if (it_hs != hs.end()) {
-            ++v_disc[it_hs->second];
-            ++total;
+        if (it_hs != hs.end() && ++v_disc[it_hs->second] == number[it_hs->second]) {
+            stsfy[it_hs->second] = true;   
         }
         
-        if (total > 9) {
-            stsfy = true;
-            for (int i = 0; i < size; ++i) {
-                if (v_disc[i] < number[i]) {
-                    stsfy = false;
-                    break;
-                }
-            }
-            day += static_cast<int>(stsfy);
-        }
+        day += static_cast<int>(stsfy.count() == size);
     }
  
     return day;
