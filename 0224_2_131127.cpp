@@ -2,13 +2,13 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include <bitset>
 
 using namespace std;
 
 int solution(vector<string> want, vector<int> number, vector<string> discount) {
-    unordered_map<string, int> hs;
+    map<string, int> hs;
     
     int size = want.size();
     for (int i = 0; i < size; ++i) {
@@ -27,7 +27,7 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
     
     int day = static_cast<int>(stsfy.count() == size);
     
-    unordered_map<string, int>::iterator it_hs;
+    map<string, int>::iterator it_hs;
     for (auto it = discount.begin(); it + 10 != discount.end(); ++it) {
         it_hs = hs.find(*it);
         if (it_hs != hs.end() && --v_disc[it_hs->second] < number[it_hs->second]) {
