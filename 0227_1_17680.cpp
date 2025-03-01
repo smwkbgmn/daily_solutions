@@ -61,3 +61,44 @@ int solution(int cache_size, vector<string> cities) {
     
     return runtime;
 }
+
+/* Version: set */
+#include <string>
+#include <vector>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cctype>
+
+using namespace std;
+
+int solution(int cache_size, vector<string> cities) {
+    set<string> cache_hit;
+    list<string> cache;
+    
+    int runtime = 0;
+    
+    for (auto s: cities) {
+        transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return tolower(c); });
+        
+        if (cache_hit.insert(s).second) {
+            cache.push_back(s);
+
+            if (cache_size == 0) {
+                cache_hit.erase(cache.front());
+                cache.pop_front();    
+            } else {
+                --cache_size;
+            }
+
+            runtime += 5;
+        } else {
+            cache.remove(s);
+            cache.push_back(s);
+
+            runtime += 1;
+        }
+    }
+    
+    return runtime;
+}
