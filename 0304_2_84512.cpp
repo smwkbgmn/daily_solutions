@@ -10,7 +10,7 @@ int solution(string word) {
         781, 156, 31, 6, 1
     };
 
-    unordered_map<char, int> w_letter = {
+    unordered_map<char, int> w_char = {
         {'A', 1},
         {'E', 2},
         {'I', 3},
@@ -20,7 +20,7 @@ int solution(string word) {
 
     int result = 0;
     for(int i = 0; i < word.size(); ++i) {
-        result += (w_letter[word[i]] - 1) * w_pos[i] + 1;
+        result += (w_char[word[i]] - 1) * w_pos[i] + 1;
     }
 
     return result;
