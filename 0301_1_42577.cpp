@@ -7,6 +7,9 @@
 
 using namespace std;
 
+/* With sorting lexicographical order,
+Can be solved by just comparing current and next string */
+
 bool solution(vector<string> phone_book) {
     sort(phone_book.begin(), phone_book.end(), [](string& a, string& b) {
         return a.length() < b.length();
