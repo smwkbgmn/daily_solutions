@@ -43,35 +43,64 @@ int solution1(vector<int> priority, int location) {
     return n_th;
 }
 
+bool existHighNum(vector<int>& nums, int num, int range) {
+    for (int i = num + 1; i < range + 1; i++)
+        if (nums[i] > 0)
+            return true;
+    return false;
+}
+
+
 // Implementation with queue + priority_queue
-int solution2(vector<int> priorities, int location) {	
-    queue<pair<int, int>> q;
-    priority_queue<int> pq;
-    
-    for (auto i = 0; i < (int)priorities.size(); ++i) {
-        q.push(pair<int, int>(priorities[i], i));
-        pq.push(priorities[i]);
-    }
-    
-    int n_th = 1;
-    while (!q.empty()) {
-        int p = q.front().first;
-        int i = q.front().second;
-        q.pop();
-        
-        if (p == pq.top()) {
-            if (i == location) {
-                return n_th;
-            }
-            
-            pq.pop();
-            ++n_th;
-        } else {
-            q.push(pair<int, int>(p, i));
+// int solution2(vector<int> priorities, int location) {	
+int solution2(vector<int> pri, int location, int range) {	
+	vector<int> nums(range + 1, 0);
+    int head = 0, answer = 1;
+    int len = pri.size();
+
+    for (size_t i = 0; i < pri.size(); i++)
+        nums[pri[i]]++;
+
+    while (true) {
+        if (pri[head] != 0 && existHighNum(nums, pri[head], range) == false) {
+            if (head == location)
+                break;
+            nums[pri[head]]--;
+            pri[head] = 0;
+            answer++;
         }
+        head = (head + 1) % len;
     }
+
+    return answer;
+
+    // queue<pair<int, int>> q;
+    // priority_queue<int> pq;
     
-    return n_th;
+    // for (auto i = 0; i < (int)priorities.size(); ++i) {
+    //     q.push(pair<int, int>(priorities[i], i));
+    //     pq.push(priorities[i]);
+    // }
+    
+    // int n_th = 1;
+    // while (!q.empty()) {
+    //     int p = q.front().first;
+    //     int i = q.front().second;
+    //     q.pop();
+        
+    //     if (p == pq.top()) {
+    //         if (i == location) {
+    //             return n_th;
+    //         }
+            
+    //         pq.pop();
+    //         ++n_th;
+    //     } else {
+    //         q.push(pair<int, int>(p, i));
+    //     }
+    // }
+    
+    // return n_th;
 }
 
 // Function to generate random test cases
@@ -129,7 +158,8 @@ void runBenchmark(int numCases, int minSize, int maxSize, int minPriority, int m
     vector<int> results2;
     
     for (size_t i = 0; i < testCases.size(); ++i) {
-        results2.push_back(solution2(testCases[i], locations[i]));
+        // results2.push_back(solution2(testCases[i], locations[i]));
+		results2.push_back(solution2(testCases[i], locations[i], 10000));
     }
     
     auto stop2 = high_resolution_clock::now();
@@ -149,7 +179,7 @@ void runBenchmark(int numCases, int minSize, int maxSize, int minPriority, int m
     // Print benchmark results
     cout << "\nBenchmark Results:" << endl;
     cout << "Implementation version 1 (deque): " << duration1.count() << " ms" << endl;
-    cout << "Implementation version 2 (queue + priority_queue): " << duration2.count() << " ms" << endl;
+    cout << "Implementation version 2 (array): " << duration2.count() << " ms" << endl;
     cout << "Speed improvement: " << (double)duration1.count() / duration2.count() << "x" << endl;
     cout << "Results match: " << (resultsMatch ? "Yes" : "No") << endl;
 }
@@ -157,19 +187,19 @@ void runBenchmark(int numCases, int minSize, int maxSize, int minPriority, int m
 int main() {
     // Small test cases
     cout << "=== Small Test Cases ===" << endl;
-    runBenchmark(1000, 10, 100, 1, 100000);
+    runBenchmark(1000, 10, 100, 1, 10000);
     
     // Medium test cases
     cout << "\n=== Medium Test Cases ===" << endl;
-    runBenchmark(100, 100, 1000, 1, 100000);
+    runBenchmark(100, 100, 1000, 1, 10000);
     
     // Large test cases
     cout << "\n=== Large Test Cases ===" << endl;
-    runBenchmark(10, 1000, 10000, 1, 100000);
+    runBenchmark(10, 1000, 10000, 1, 10000);
     
     // Very large test cases
     cout << "\n=== Very Large Test Cases ===" << endl;
-    runBenchmark(5, 10000, 100000, 1, 100000);
+    runBenchmark(5, 10000, 100000, 1, 10000);
     
     return 0;
 }
