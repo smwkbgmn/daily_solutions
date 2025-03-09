@@ -1,3 +1,5 @@
+/* 주차 요금 계산 - 92341 */
+
 #include <string>
 #include <vector>
 #include <map>
@@ -17,7 +19,7 @@ vector<int> solution(vector<int> fees, vector<string> records) {
     }
     
     vector<int> rst;
-	
+
     for (auto& [s, v]: rec_map) {
         if (v.size() % 2 == 1) {
             v.push_back(1439);
@@ -28,9 +30,8 @@ vector<int> solution(vector<int> fees, vector<string> records) {
             time_total += (*(it + 1) - *it);
         }
         
-        rst.push_back((time_total > fees[0])? \
-        ceil(static_cast<float>(time_total - fees[0]) / static_cast<float>(fees[2])) * fees[3] + fees[1] : \
-        fees[1]);
+        rst.push_back(fees[1] + (time_total > fees[0]?
+            ceil(static_cast<float>(time_total - fees[0]) / static_cast<float>(fees[2])) * fees[3] : 0));
     }
     
     return rst;
