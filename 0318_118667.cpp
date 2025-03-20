@@ -8,10 +8,10 @@ using namespace std;
 int solution(vector<int> q1, vector<int> q2) {
     int size = q1.size();
     
-    unsigned long long total = 0, q1_sum = 0;
+    unsigned long long total = 0, sum = 0;
     for (auto i = 0; i < size; i++) {
         total += q1[i] + q2[i];
-        q1_sum += q1[i];
+        sum += q1[i];
     }
     
     unsigned long long half = total / 2;
@@ -19,21 +19,21 @@ int solution(vector<int> q1, vector<int> q2) {
     bool over = false;
     
     while (i1 < size && i2 < size) {
-        if (q1_sum == half)
+        if (sum == half)
             return rst;
         
-        if (q1_sum < half) {
-            q1_sum += q2[i2++];
+        if (sum < half) {
+            sum += q2[i2++];
         }
         else if (!over) {
-            q1_sum -= q1[i1++];
+            sum -= q1[i1++];
 
             if (i1 == size) {
                 i1 = 0;
                 over = true;
             }
         } else {
-            q1_sum -= q2[i1++];
+            sum -= q2[i1++];
         }
         
         ++rst;

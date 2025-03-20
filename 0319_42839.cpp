@@ -34,7 +34,6 @@ int solution(string numbers) {
     
     sort(nums.begin(), nums.end());
     
-    
     for (auto next = true; next; next = next_permutation(nums.begin(), nums.end())) {
         int num = 0;
         for (auto i = 0; i < nums.size(); ++i) {
