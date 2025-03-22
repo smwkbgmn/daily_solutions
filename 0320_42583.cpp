@@ -25,3 +25,60 @@ int solution(int length, int weight, vector<int> trucks) {
     
     return time;
 }
+
+
+
+
+
+
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int solution(int length, int weight, vector<int> trucks) {
+    queue<pair<int, int>> bridge;
+	int time = 1, sum = 0, on = 0, result = 0;
+
+	auto i = 0;
+    while (i < trucks.size()) {
+        if (length == on || sum + trucks[i] > weight) {
+            pair<int, int> truck = bridge.front();
+            bridge.pop();
+
+            sum -= truck.first;
+            on -= 1;
+
+            if (time < truck.second + length) {
+                time = truck.second + length; 
+            }
+        } else {
+            ++on;
+            sum += trucks[i];
+            bridge.emplace(trucks[i], time);
+
+            ++time;
+			++i;
+        }
+    }
+
+    while(!bridge.empty())
+    {
+        time = bridge.front().second + length;
+        bridge.pop();
+    }
+
+    return time;
+}
+
+
+
+
+
+
+
+
+
+
+
+
