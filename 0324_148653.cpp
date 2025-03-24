@@ -39,3 +39,19 @@ int solution(int storey) {
     
     return result;
 }
+
+/* Version: DFS for all possible cases and resturn minimal one */
+#include <algorithm>
+
+int dfs(int num) {
+    if (num < 10) {
+        return min(num, 10 - num + 1);
+    }
+    
+    int a = num % 10, b = 10 - num % 10;
+    return min(dfs((num - a) / 10) + a, dfs((num + b) / 10) + b);
+}
+
+int solution (int storey) {
+    return dfs(storey);
+}
