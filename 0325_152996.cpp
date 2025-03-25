@@ -10,7 +10,7 @@ long long solution(vector<int> weights) {
     
     unordered_map<int, long> w_map;
     for (auto& n: weights) {
-        ++w_map[n << 2];
+        ++w_map[n];
     }
 
     for (auto& [w, cnt]: w_map) {
@@ -20,5 +20,28 @@ long long solution(vector<int> weights) {
         rst += cnt * (w_map.find(w * 2) == w_map.end()? 0 : w_map[w * 2]);
     }
     
+    return rst;
+}
+
+/* Version: pre_allocated vector */
+long long solution(vector<int> weights) {
+    long rst = 0;
+
+    vector<long> w_cnt(2001,0);
+    for (auto& n: weights) {
+        ++w_cnt[n];
+    }
+
+    for (int i = 100; i <= 1000; ++i) {
+        if (w_cnt[i] == 0) {
+            continue;
+        }
+
+        rst += (w_cnt[i] - 1) * w_cnt[i] / 2;
+		rst += w_cnt[i] * ((i * 3) % 2 == 0? w_cnt[i * 3 / 2] : 0);
+		rst += w_cnt[i] * ((i * 4) % 3 == 0? w_cnt[i * 4 / 3] : 0);
+        rst += w_cnt[i] * w_cnt[i * 2];
+    }
+
     return rst;
 }

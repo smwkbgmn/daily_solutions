@@ -16,3 +16,4 @@ int dfs(int num) {
 int solution (int storey) {
     return dfs(storey);
 }
+
