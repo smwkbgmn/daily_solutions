@@ -11,7 +11,7 @@ const int dir[4] = { +100, +1, -100, -1 };
 
 int solution(vector<string> maps) {
     size_t max_r = maps.size(), max_c = maps[0].length();
-    
+
 	int begin = -1;
     for (auto r = 0; r < max_r && begin == -1; ++r) {
         for (auto c = 0; c < max_c && begin == -1; ++c) {
@@ -20,7 +20,7 @@ int solution(vector<string> maps) {
             }
         }
     }
-    
+
 	int distance = 0;
     auto bfs = [&](char target) -> bool {
         queue<int> q;
@@ -55,10 +55,10 @@ int solution(vector<string> maps) {
 		}
 		return false;
     };
-    
+
     if (!bfs('L') || !bfs('E')) {
         return -1;
     }
-	
+
 	return distance;
 }
