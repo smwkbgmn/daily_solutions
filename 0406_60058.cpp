@@ -37,7 +37,3 @@ string solution(string p) {
     return correct(p);
 }
 
-
-
-
-

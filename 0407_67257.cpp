@@ -7,11 +7,11 @@
 #include <algorithm>
 
 using namespace std;
-using fn_operation = long long (*)(long long, long long);
+using fn_operation = void (*)(long long&, long long&);
 
-long long mlt(long long a, long long b) { return a * b; }
-long long add(long long a, long long b) { return a + b; }
-long long sub(long long a, long long b) { return a - b; }
+void mlt(long long& a, long long& b) { a *= b; }
+void add(long long& a, long long& b) { a += b; }
+void sub(long long& a, long long& b) { a -= b; }
 
 deque<pair<long long, char>>& operate(deque<pair<long long, char>> & q, char operand) {
     fn_operation fn;
@@ -26,7 +26,7 @@ deque<pair<long long, char>>& operate(deque<pair<long long, char>> & q, char ope
     
     while (q.front().second != 's') {
         if (q.front().second == operand) {
-            q.back().first = fn(q.back().first, q.front().first);
+            fn(q.back().first, q.front().first);
         } else {
             q.push_back(q.front());
         }
