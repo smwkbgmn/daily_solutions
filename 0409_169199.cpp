@@ -17,8 +17,10 @@ int solution(vector<string> board) {
     for (auto r = 0; r < r_max; ++r) {
         for (auto c = 0; c < c_max; ++c) {
             if (board[r][c] == 'R') {
-                q.push(r * 100 + c);
-				record.insert(r * 100 + c);
+				int begin = r * 100 + c;
+
+                q.push(begin);
+				record.insert(begin);
             } else if (board[r][c] == 'G') {
 				goal = r * 100 + c;
 			}
