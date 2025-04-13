@@ -1,6 +1,7 @@
 /* 가장 큰 정사각형 찾기 - 12905 */
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int solution(vector<vector<int>> board) {
         for (auto c = 1; c < len_c; ++c) {         
             if (!board[r][c]) continue;
             
-            board[r][c] += min(min(board[r][c - 1], board[r - 1][c]), board[r - 1][c - 1]);
+            board[r][c] += min({board[r][c - 1], board[r - 1][c], board[r - 1][c - 1]});
             d = max(d, board[r][c]);
         }
     }
