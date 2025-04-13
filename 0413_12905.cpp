@@ -18,7 +18,7 @@ int solution(vector<vector<int>> board) {
         }
     }
     
-    if (d != 0) return d * d;
+    if (d > 0) return d * d;
     
     for (auto r = 0; r < len_r; ++r) {
         if (board[r][0]) return 1;
