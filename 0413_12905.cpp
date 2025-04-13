@@ -26,6 +26,5 @@ int solution(vector<vector<int>> board) {
     for (auto c = 1; c < len_c; ++c) {
         if (board[0][c]) return 1;
     }
-                
     return 0;
 }
