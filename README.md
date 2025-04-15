@@ -5,8 +5,10 @@
 - Algorithms - Euclidean, Dijkstra, Floyd-Warshall, LRU Caching
 - Concept - H-index, Jaccard-index
   
+### How to Access Problem Instruction 
+- Enter the url with the problem_id
+`https://school.programmers.co.kr/learn/courses/30/lessons/<problem_id>`
+- The problem_id can be found under the name of each solution. Filename be formed with [mmdd_id] or [mmdd_in-a-day-order_id]
+
 ### Programming Language
 - C++
-  
-### How to Access Problem Page  
-Enter the url with problem number `https://school.programmers.co.kr/learn/courses/30/lessons/<problem_number>`
