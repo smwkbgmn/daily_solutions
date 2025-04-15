@@ -8,5 +8,5 @@
 ### Programming Language
 - C++
   
-### How to Access the Problem Page  
+### How to Access Problem Page  
 Enter the url with problem number `https://school.programmers.co.kr/learn/courses/30/lessons/<problem_number>`
