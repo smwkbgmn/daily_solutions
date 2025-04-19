@@ -35,4 +35,3 @@ int solution(vector<int> picks, vector<string> minerals) {
     
     return fatigue;
 }
-
