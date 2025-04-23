@@ -29,6 +29,6 @@ int solution(vector<int> puzzle, vector<int> duration, long long limit) {
             min = level + 1;
         }
     }
-    
+
     return min;
 }
