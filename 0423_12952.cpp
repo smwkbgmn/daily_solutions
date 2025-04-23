@@ -22,20 +22,20 @@ int solution(int n) {
         return true;
     };
 
-    auto dfs = [&](auto& self, int r, const vector<int>& queen) -> int {
+    auto dfs = [&](auto& self, int r, vector<int>& queen) -> int {
         if (r == n) return 1;
         
         int sum = 0;
         for (auto c = 0; c < n; ++c) {
             if (!valid(queen, c)) continue;
             
-            vector<int> queen_cpy = queen;
-            queen_cpy.push_back(c);
-            
-            sum += self(self, r + 1, queen_cpy);
+            queen.push_back(c);
+            sum += self(self, r + 1, queen);
+            queen.erase(queen.begin() + r, queen.end());
         }
         return sum;
     };
     
-    return dfs(dfs, 0, vector<int>());
+    vector<int> holder;
+    return dfs(dfs, 0, holder);
 }
