@@ -38,7 +38,7 @@ int solution(vector<vector<int>> land) {
                 }
             }
 
-            pipe = max((int)pipe, c);
+            pipe = max(pipe, c);
             ++oil;
         }
 
