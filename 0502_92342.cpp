@@ -20,7 +20,7 @@ vector<int> solution(int n, vector<int> info) {
             }
         };
         
-        if (d == 11 || arrow == 0) {
+        if (d == 10 || arrow == 0) {
             record[10] = arrow;
             if (my - op > diff || my - op == diff && is_greater_count_on_lower_grade()) {
                 diff = my - op;
@@ -50,7 +50,7 @@ vector<int> solution(int n, vector<int> info) {
     
     dfs(dfs, 0, n, 0, op_score);
     
-    if (win.size() == 0 || diff == 0) {
+    if (win.size() == 0) {
         return vector<int>(1, -1);
     }
     
