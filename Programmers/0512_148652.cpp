@@ -1,4 +1,4 @@
-/* 유사 칸토어 비트열 (Pesudo Cantor Bit Sequence) - 148652 */
+/* 유사 칸토어 비트열 (Pesudo Cantor Set Bit Sequence) - 148652 */
 
 using namespace std;
 
